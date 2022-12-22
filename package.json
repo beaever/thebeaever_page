@@ -1,0 +1,50 @@
+{
+  "name": "thebeaever_page",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "stylelint:fix": "stylelint --fix \"**/*.tsx\"",
+    "postinstall": "husky install",
+    "doctor": "yarn dlx @yarnpkg/doctor vscode",
+    "sdks": "yarn dlx @yarnpkg/sdks vscode"
+  },
+  "lint-staged": {
+    "*.tsx": "eslint --fix",
+    "*.ts": "eslint --fix"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "next": "^12.1.6",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-is": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "18.0.0",
+    "@types/react": "18.0.14",
+    "@types/react-dom": "18.0.5",
+    "@typescript-eslint/eslint-plugin": "^5.30.4",
+    "@typescript-eslint/parser": "^5.30.4",
+    "@yarnpkg/pnpify": "^4.0.0-rc.25",
+    "eslint": "8.18.0",
+    "eslint-config-next": "12.1.6",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-react": "^7.30.1",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
+    "stylelint": "^14.14.0",
+    "stylelint-config-prettier-scss": "^0.0.1",
+    "stylelint-config-recess-order": "^3.0.0",
+    "stylelint-config-recommended-scss": "^7.0.0",
+    "stylelint-prettier": "^2.0.0",
+    "typescript": "^4.7.4"
+  },
+  "packageManager": "yarn@3.3.0"
+}
