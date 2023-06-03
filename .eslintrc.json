@@ -1,8 +1,0 @@
-{
-  "extends": [
-    "react-app",
-    "next/core-web-vitals",
-    "airbnb",
-    "prettier" //여기서도 꼭 마지막에 추가
-  ]
-}
