@@ -6,6 +6,9 @@ const style = css`
   :root {
     --vh: 100%;
   }
+  #__next {
+    padding: 0 10px;
+  }
   html {
     font-size: 62.5%;
   }
