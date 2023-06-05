@@ -5,8 +5,9 @@ import { useState } from 'react';
 const containerStyle = css`
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   width: 100%;
-  padding-top: 10px;
+  padding: 10px 0;
   height: 30px;
 `;
 
