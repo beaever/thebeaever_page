@@ -6,6 +6,7 @@ const style = css`
   :root {
     --vh: 100%;
   }
+
   #__next {
     padding: 0 10px;
   }
@@ -14,6 +15,10 @@ const style = css`
   }
   * {
     -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
     &,
     ::after,
     ::before {
