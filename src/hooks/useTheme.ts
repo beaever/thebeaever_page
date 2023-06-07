@@ -1,4 +1,3 @@
-// /hooks/useTheme.ts
 import { useState, useEffect, useMemo, useCallback } from 'react';
 
 type ThemeKey = 'light' | 'dark';
