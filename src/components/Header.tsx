@@ -1,6 +1,7 @@
+import { useState } from 'react';
 import { Fonts } from '@/styles/themes';
 import { css } from '@emotion/react';
-import { useState } from 'react';
+import { DarkModeType } from '@/hooks/useTheme';
 
 const containerStyle = css`
   display: flex;
@@ -18,8 +19,6 @@ const textStyle = css`
 const contentStyle = css`
   cursor: pointer;
 `;
-
-type DarkModeType = 'light' | 'dark';
 
 const Header = (): JSX.Element => {
   const [darkMode, setDarkMode] = useState<DarkModeType>('light');
