@@ -1,39 +1,44 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 
-type ThemeKey = 'light' | 'dark';
+/**
+ * @desc DarkMode Type
+ * @type {'light' | 'dark'}
+ * */
+export type DarkModeType = 'light' | 'dark';
 
 type ReturnType = {
-  theme: ThemeKey;
+  theme: DarkModeType;
   isDarkMode: boolean;
-  setTheme: (theme: ThemeKey) => void;
+  setTheme: (theme: DarkModeType) => void;
   toggleTheme: () => void;
 };
 
 const useTheme = (): ReturnType => {
-  const [theme, setTheme] = useState<ThemeKey>('light');
+  const [theme, setTheme] = useState<DarkModeType>('light');
   const isDarkMode = useMemo(() => theme === 'dark', [theme]);
 
-  const initTheme = useCallback(() => {
+  const initTheme = () => {
     const preferDarkMode =
       window.matchMedia &&
       window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const initalTheme = (localStorage?.getItem('theme') ||
-      (preferDarkMode ? 'dark' : 'light')) as ThemeKey;
+    const initalTheme = (localStorage?.getItem('prefer-theme') ||
+      (preferDarkMode ? 'dark' : 'light')) as DarkModeType;
     setTheme(initalTheme);
-  }, []);
+  };
+
+  /** @desc Theme를 변경하는 Toggle Func */
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
+  };
 
   useEffect(() => {
     initTheme();
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('theme', theme);
+    localStorage.setItem('prefer-theme', theme);
     document.body.dataset.theme = theme;
   }, [theme]);
-
-  const toggleTheme = useCallback(() => {
-    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
-  }, []);
 
   return { theme, isDarkMode, setTheme, toggleTheme };
 };
