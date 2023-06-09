@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 
 /**
  * @desc DarkMode Type
@@ -19,10 +19,11 @@ const useTheme = (): ReturnType => {
 
   const initTheme = () => {
     const preferDarkMode =
-      window.matchMedia &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches;
+      window.matchMedia?.('(prefers-color-scheme: dark)').matches || false;
+
     const initalTheme = (localStorage?.getItem('prefer-theme') ||
       (preferDarkMode ? 'dark' : 'light')) as DarkModeType;
+
     setTheme(initalTheme);
   };
 
