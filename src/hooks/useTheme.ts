@@ -13,6 +13,7 @@ type ReturnType = {
   toggleTheme: () => void;
 };
 
+/** @desc DrakMode를 적용하는 customHooks */
 const useTheme = (): ReturnType => {
   const [theme, setTheme] = useState<DarkModeType>('light');
   const isDarkMode = useMemo(() => theme === 'dark', [theme]);
