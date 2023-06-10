@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 
 /**
  * @desc DarkMode Type
@@ -13,16 +13,17 @@ type ReturnType = {
   toggleTheme: () => void;
 };
 
+/** @desc DrakMode를 적용하는 customHooks */
 const useTheme = (): ReturnType => {
   const [theme, setTheme] = useState<DarkModeType>('light');
   const isDarkMode = useMemo(() => theme === 'dark', [theme]);
 
   const initTheme = () => {
     const preferDarkMode =
-      window.matchMedia &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches;
+      window.matchMedia?.('(prefers-color-scheme: dark)').matches || false;
     const initalTheme = (localStorage?.getItem('prefer-theme') ||
       (preferDarkMode ? 'dark' : 'light')) as DarkModeType;
+
     setTheme(initalTheme);
   };
 
