@@ -21,7 +21,6 @@ const useTheme = (): ReturnType => {
   const initTheme = () => {
     const preferDarkMode =
       window.matchMedia?.('(prefers-color-scheme: dark)').matches || false;
-
     const initalTheme = (localStorage?.getItem('prefer-theme') ||
       (preferDarkMode ? 'dark' : 'light')) as DarkModeType;
 
