@@ -2,6 +2,7 @@ import { Colors, Fonts } from '@/styles/themes';
 import { css } from '@emotion/react';
 import { useState } from 'react';
 import ArrowBottom from '../../public/svg/icArrowBottom.svg';
+import { contentsFontStyle, titleFontStyle } from '@/styles/common.style';
 
 const containerStyle = css`
   width: 100%;
@@ -19,11 +20,6 @@ const titleStyle = css`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-`;
-
-const titleFontStyle = css`
-  ${Fonts.size.size18};
-  ${Fonts.weight.weight800};
 `;
 
 const innerContentsStyle = css`
@@ -57,7 +53,7 @@ const Accordion = ({ title, content }: AccordionProps): JSX.Element => {
           <ArrowBottom css={iconStyle} />
         </div>
       </div>
-      <div>{isOpen && <p css={innerContentsStyle}>{content}</p>}</div>
+      <div>{isOpen && <p css={contentsFontStyle}>{content}</p>}</div>
     </div>
   );
 };

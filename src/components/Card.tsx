@@ -1,3 +1,4 @@
+import { contentsFontStyle, titleFontStyle } from '@/styles/common.style';
 import { Colors } from '@/styles/themes';
 import { css } from '@emotion/react';
 
@@ -20,9 +21,15 @@ interface CardProps {
 const Card = ({ title, contents, description }: CardProps): JSX.Element => {
   return (
     <div css={containerStyle}>
-      <div>{title}</div>
+      <div>
+        <span css={titleFontStyle}>{title}</span>
+      </div>
       <div>{contents}</div>
-      {description && <div>{description}</div>}
+      {description && (
+        <div>
+          <span css={contentsFontStyle}>{description}</span>
+        </div>
+      )}
     </div>
   );
 };
