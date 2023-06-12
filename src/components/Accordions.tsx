@@ -2,7 +2,11 @@ import { Colors, Fonts } from '@/styles/themes';
 import { css } from '@emotion/react';
 import { useState } from 'react';
 import ArrowBottom from '../../public/svg/icArrowBottom.svg';
-import { contentsFontStyle, titleFontStyle } from '@/styles/common.style';
+import {
+  boxshadowStyle,
+  contentsFontStyle,
+  titleFontStyle,
+} from '@/styles/common.style';
 
 const containerStyle = css`
   width: 100%;
@@ -20,11 +24,6 @@ const titleStyle = css`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-`;
-
-const innerContentsStyle = css`
-  ${Fonts.size.size12}
-  color: ${Colors.element.grayScale600};
 `;
 
 const iconStyle = css`
@@ -46,7 +45,7 @@ const Accordion = ({ title, content }: AccordionProps): JSX.Element => {
   };
 
   return (
-    <div css={containerStyle}>
+    <div css={[containerStyle, boxshadowStyle]}>
       <div css={titleStyle}>
         <span css={titleFontStyle}>{title}</span>
         <div onClick={onClickToggle}>

@@ -9,16 +9,15 @@ const containerStyle = (
   flexDirection?: FlexDirectionType,
   maxWidth?: string
 ) => css`
-  ${maxWidth && `max-width: ${maxWidth};`};
   width: 100%;
   display: flex;
   flex-direction: ${flexDirection};
   ${gap && `gap: ${gap}px;`};
   ${rowGap && `row-gap: ${rowGap}px;`};
   ${columnGap && `column-gap: ${columnGap}px;`};
+  ${maxWidth && `max-width: ${maxWidth};`};
   flex-wrap: wrap;
   justify-content: flex-start;
-  align-items: center;
 `;
 
 interface BoxProps {
