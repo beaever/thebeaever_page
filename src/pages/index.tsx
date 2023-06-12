@@ -1,16 +1,7 @@
-import { css } from '@emotion/react';
 import Accordion from '@/components/Accordions';
 import Card from '@/components/Card';
 import Header from '@/components/Header';
-
-const contentContainerStyle = css`
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-`;
+import Box from '@/components/Box';
 
 const Home = () => {
   const CONFIG_INITALVALUE = [
@@ -72,21 +63,75 @@ const Home = () => {
     },
   ];
 
+  const CONFIG_ACCORDION_INITALVALUE = [
+    {
+      title: '아코디언',
+      content:
+        '아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 ',
+    },
+    {
+      title: '아코디언',
+      content:
+        '아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 ',
+    },
+    {
+      title: '아코디언',
+      content:
+        '아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 ',
+    },
+    {
+      title: '아코디언',
+      content:
+        '아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 ',
+    },
+    {
+      title: '아코디언',
+      content:
+        '아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 ',
+    },
+    {
+      title: '아코디언',
+      content:
+        '아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 ',
+    },
+    {
+      title: '아코디언',
+      content:
+        '아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 ',
+    },
+    {
+      title: '아코디언',
+      content:
+        '아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 ',
+    },
+    {
+      title: '아코디언',
+      content:
+        '아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 아코디언 컴포넌트 내부 내용 ',
+    },
+  ];
+
   return (
     <>
       <Header />
       <main>
-        <div css={contentContainerStyle}>
-          <Accordion title='아코디언' content='아코디언 컴포넌트 제작' />
-          {CONFIG_INITALVALUE.map((el) => (
+        <Box columnGap={20} rowGap={40}>
+          <Box gap={10}>
+            {CONFIG_ACCORDION_INITALVALUE.map((el, idx) => (
+              <Box key={`${el.title}-${idx}`} maxWidth='500px'>
+                <Accordion title={el.title} content={el.content} />
+              </Box>
+            ))}
+          </Box>
+          {CONFIG_INITALVALUE.map((el, idx) => (
             <Card
-              key={`${el.title}-${el.contents}-${el.description}`}
+              key={`${el.title}-${idx}`}
               title={el.title}
               contents={el.contents}
               description={el.description}
             />
           ))}
-        </div>
+        </Box>
       </main>
     </>
   );

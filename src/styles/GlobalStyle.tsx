@@ -8,7 +8,7 @@ const style = css`
   }
 
   #__next {
-    padding: 0 10px;
+    padding: 0 40px;
   }
   html {
     font-size: 62.5%;
