@@ -1,4 +1,8 @@
-import { contentsFontStyle, titleFontStyle } from '@/styles/common.style';
+import {
+  boxshadowStyle,
+  contentsFontStyle,
+  titleFontStyle,
+} from '@/styles/common.style';
 import { Colors } from '@/styles/themes';
 import { css } from '@emotion/react';
 
@@ -8,6 +12,8 @@ const containerStyle = css`
   display: flex;
   flex-direction: column;
   row-gap: 10px;
+  max-width: 300px;
+  background-color: ${Colors.element.grayScale100};
 `;
 
 /** @desc Card Props */
@@ -20,7 +26,7 @@ interface CardProps {
 /** @desc Card 컴포넌트 */
 const Card = ({ title, contents, description }: CardProps): JSX.Element => {
   return (
-    <div css={containerStyle}>
+    <div css={[containerStyle, boxshadowStyle]}>
       <div>
         <span css={titleFontStyle}>{title}</span>
       </div>

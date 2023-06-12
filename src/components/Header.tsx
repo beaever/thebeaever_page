@@ -14,9 +14,11 @@ const containerStyle = css`
 
 const textStyle = css`
   ${Fonts.style.body6}
+  ${Fonts.weight.weight800}
 `;
 
 const contentStyle = css`
+  padding-top: 10px;
   cursor: pointer;
 `;
 

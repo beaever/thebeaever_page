@@ -28,7 +28,7 @@ const Index = (): JSX.Element => {
   return (
     <section css={containerStyle}>
       <div css={titleStyle}>404</div>
-      <div css={subTitleStyle}>page not found</div>
+      <div css={subTitleStyle}>PAGE NOT FOUND</div>
     </section>
   );
 };
