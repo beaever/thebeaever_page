@@ -2,6 +2,7 @@ import Accordion from '@/components/Accordions';
 import Card from '@/components/Card';
 import Header from '@/components/Header';
 import Box from '@/components/Box';
+import Footer from '@/components/Footer';
 
 const Home = () => {
   const CONFIG_INITALVALUE = [
@@ -133,6 +134,7 @@ const Home = () => {
           ))}
         </Box>
       </main>
+      <Footer />
     </>
   );
 };
