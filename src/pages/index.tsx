@@ -3,6 +3,15 @@ import Card from '@/components/Card';
 import Header from '@/components/Header';
 import Box from '@/components/Box';
 import Footer from '@/components/Footer';
+import { css } from '@emotion/react';
+
+const containerStyle = css`
+  display: flex;
+  flex-direction: column;
+  main {
+    margin-top: 20px;
+  }
+`;
 
 const Home = () => {
   /** @desc Accordion 컴포넌트의 Inital Value */
@@ -115,7 +124,7 @@ const Home = () => {
   ];
 
   return (
-    <>
+    <div css={containerStyle}>
       <Header />
       <main>
         <Box columnGap={20} rowGap={40}>
@@ -137,7 +146,7 @@ const Home = () => {
         </Box>
       </main>
       <Footer />
-    </>
+    </div>
   );
 };
 

@@ -7,7 +7,8 @@ const containerStyle = (
   rowGap?: number,
   columnGap?: number,
   flexDirection?: FlexDirectionType,
-  maxWidth?: string
+  maxWidth?: string,
+  flex?: number
 ) => css`
   width: 100%;
   display: flex;
@@ -18,6 +19,7 @@ const containerStyle = (
   ${maxWidth && `max-width: ${maxWidth};`};
   flex-wrap: wrap;
   justify-content: flex-start;
+  ${flex && `flex: ${flex};`};
 `;
 
 interface BoxProps {
@@ -26,6 +28,7 @@ interface BoxProps {
   columnGap?: number;
   flexDirection?: FlexDirectionType;
   maxWidth?: string;
+  flex?: number;
   children?: React.ReactNode;
 }
 
@@ -36,10 +39,20 @@ const Box = ({
   gap,
   rowGap,
   maxWidth,
+  flex,
   children,
 }: BoxProps) => {
   return (
-    <div css={containerStyle(gap, rowGap, columnGap, flexDirection, maxWidth)}>
+    <div
+      css={containerStyle(
+        gap,
+        rowGap,
+        columnGap,
+        flexDirection,
+        maxWidth,
+        flex
+      )}
+    >
       {children}
     </div>
   );
