@@ -1,24 +1,19 @@
 import { useState } from 'react';
-import { Fonts } from '@/styles/themes';
 import { css } from '@emotion/react';
 import { DarkModeType } from '@/hooks/useTheme';
+import Button from './Button';
 
 const containerStyle = css`
+  position: fixed;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  width: 100%;
   padding: 10px 0;
-  height: 30px;
-`;
-
-const textStyle = css`
-  ${Fonts.style.body6}
-  ${Fonts.weight.weight800}
+  width: calc(100% - 60px);
+  height: fit-content;
 `;
 
 const contentStyle = css`
-  padding-top: 10px;
   cursor: pointer;
 `;
 
@@ -33,9 +28,7 @@ const Header = (): JSX.Element => {
   return (
     <header css={containerStyle}>
       <div css={contentStyle} onClick={() => onClickChangeDarkMode(darkMode)}>
-        <span css={textStyle}>
-          {darkMode === 'light' ? 'DARK MODE' : 'LIGHT MODE'}
-        </span>
+        <Button text={darkMode === 'light' ? 'DARK MODE' : 'LIGHT MODE'} />
       </div>
     </header>
   );
