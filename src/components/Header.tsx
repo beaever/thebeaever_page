@@ -4,12 +4,14 @@ import { DarkModeType } from '@/hooks/useTheme';
 import Button from './Button';
 
 const containerStyle = css`
+  position: absolute;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   padding: 10px 0;
   width: 100%;
   height: fit-content;
+  background-color: rgba(255, 255, 255, 0.1);
 `;
 
 const contentStyle = css`

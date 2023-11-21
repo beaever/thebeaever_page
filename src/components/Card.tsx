@@ -7,13 +7,15 @@ import { Colors } from '@/styles/themes';
 import { css } from '@emotion/react';
 
 const containerStyle = css`
-  border: 1px solid ${Colors.element.grayScale200};
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
   padding: 10px;
   display: flex;
   flex-direction: column;
   row-gap: 10px;
   max-width: 300px;
-  background-color: ${Colors.element.grayScale100};
+  color: ${Colors.palette.gray10};
 `;
 
 /** @desc Card Props */

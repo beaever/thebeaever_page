@@ -9,8 +9,8 @@ export const titleFontStyle = css`
 
 /** @desc 각 content의 Style */
 export const contentsFontStyle = css`
-  ${Fonts.size.size12}
-  color: ${Colors.element.grayScale600};
+  ${Fonts.size.size12};
+  color: ${Colors.palette.gray30};
 `;
 
 /** @desc boxshadow */
