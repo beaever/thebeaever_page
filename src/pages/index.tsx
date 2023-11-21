@@ -8,6 +8,8 @@ import { css } from '@emotion/react';
 const containerStyle = css`
   display: flex;
   flex-direction: column;
+  padding: 0 40px;
+  background: linear-gradient(to right bottom, dodgerblue, crimson);
   main {
     margin-top: 20px;
   }
