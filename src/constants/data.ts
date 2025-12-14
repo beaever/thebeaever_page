@@ -1,7 +1,7 @@
 import type { Project, Skill, SocialLink } from '@/types';
 
 export const PROFILE = {
-  name: 'Your Name',
+  name: 'THEBEAEVER',
   title: 'Frontend Developer',
   description:
     '사용자 경험을 중시하는 프론트엔드 개발자입니다. React, TypeScript, Next.js를 주로 사용하며, 클린 코드와 최신 기술 트렌드에 관심이 많습니다.',

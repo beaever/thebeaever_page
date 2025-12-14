@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   title: 'Portfolio | Frontend Developer',
   description: '사용자 경험을 중시하는 프론트엔드 개발자 포트폴리오입니다.',
   keywords: ['Frontend', 'Developer', 'React', 'TypeScript', 'Next.js'],
-  authors: [{ name: 'Your Name' }],
+  authors: [{ name: 'THEBEAEVER' }],
   openGraph: {
     title: 'Portfolio | Frontend Developer',
     description: '사용자 경험을 중시하는 프론트엔드 개발자 포트폴리오입니다.',
