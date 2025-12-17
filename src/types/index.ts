@@ -6,6 +6,8 @@ export interface Project {
   tags: string[];
   liveUrl?: string;
   githubUrl?: string;
+  date: string;
+  role: string;
 }
 
 export interface Skill {

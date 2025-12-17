@@ -19,6 +19,8 @@ export const PROJECTS: Project[] = [
     tags: ['React', 'TypeScript', 'Tailwind CSS'],
     liveUrl: 'https://example.com',
     githubUrl: 'https://github.com',
+    date: 'Dec.2024',
+    role: 'Design & Dev',
   },
   {
     id: '2',
@@ -29,6 +31,8 @@ export const PROJECTS: Project[] = [
     tags: ['Next.js', 'Prisma', 'PostgreSQL'],
     liveUrl: 'https://example.com',
     githubUrl: 'https://github.com',
+    date: 'Nov.2024',
+    role: 'Dev',
   },
   {
     id: '3',
@@ -39,6 +43,8 @@ export const PROJECTS: Project[] = [
     tags: ['React', 'D3.js', 'Node.js'],
     liveUrl: 'https://example.com',
     githubUrl: 'https://github.com',
+    date: 'Oct.2024',
+    role: 'Design & Dev',
   },
 ];
 

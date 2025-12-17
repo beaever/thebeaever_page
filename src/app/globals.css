@@ -1,5 +1,5 @@
-@import "tailwindcss";
-@import "tw-animate-css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -122,4 +122,18 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background-color: oklch(0.205 0 0);
+  color: oklch(0.985 0 0);
+}
+
+.dark ::selection {
+  background-color: oklch(0.985 0 0);
+  color: oklch(0.205 0 0);
 }
