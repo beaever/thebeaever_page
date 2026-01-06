@@ -62,7 +62,7 @@ export const SKILLS: Skill[] = [
 export const SOCIAL_LINKS: SocialLink[] = [
   {
     name: 'GitHub',
-    url: 'https://github.com',
+    url: 'https://github.com/beaever',
     icon: 'github',
   },
   {
