@@ -23,57 +23,60 @@ export function Sidebar() {
   return (
     <>
       {/* Desktop Sidebar */}
-      <aside className='hidden lg:flex fixed left-0 top-0 h-screen w-70 flex-col justify-between p-8 z-50'>
+      <aside className='hidden lg:flex fixed left-0 top-0 h-screen w-72 flex-col justify-between p-10 z-50 border-r border-border/20'>
         <div>
-          <Link href='/' className='block mb-2'>
-            <h1 className='text-xl font-medium tracking-tight'>
+          <Link href='/' className='block mb-1'>
+            <h1 className='text-2xl font-black tracking-tight uppercase'>
               {PROFILE.name}
             </h1>
           </Link>
-          <p className='text-sm text-muted-foreground mb-12'>{PROFILE.title}</p>
+          <p className='text-xs text-muted-foreground font-medium uppercase tracking-widest mb-16'>
+            {PROFILE.title}
+          </p>
 
-          <nav className='space-y-1'>
+          <nav className='space-y-2'>
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex items-center gap-2 py-1.5 text-sm transition-colors ${
+                className={`block py-2 text-sm font-bold uppercase tracking-wider transition-all duration-300 ${
                   pathname === item.href
-                    ? 'text-foreground'
-                    : 'text-muted-foreground hover:text-foreground'
+                    ? 'text-foreground translate-x-2'
+                    : 'text-muted-foreground hover:text-foreground hover:translate-x-2'
                 }`}
               >
-                <span className='w-1.5 h-1.5 rounded-full bg-current' />
                 {item.label}
               </Link>
             ))}
           </nav>
         </div>
 
-        <div className='space-y-4'>
+        <div className='space-y-6'>
           <button
             onClick={toggleTheme}
-            className='flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors'
+            className='flex items-center gap-3 text-xs font-bold uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors'
           >
             {theme === 'dark' ? (
               <>
                 <Sun className='w-4 h-4' />
-                Light
+                Light Mode
               </>
             ) : (
               <>
                 <Moon className='w-4 h-4' />
-                Dark
+                Dark Mode
               </>
             )}
           </button>
-          <p className='text-xs text-muted-foreground'>© {PROFILE.name}</p>
+          <p className='text-xs text-muted-foreground font-medium'>
+            © 2024 {PROFILE.name}
+          </p>
         </div>
       </aside>
 
       {/* Mobile Header */}
-      <header className='lg:hidden fixed top-0 left-0 right-0 h-16 flex items-center justify-between px-6 bg-background/80 backdrop-blur-md z-50 border-b border-border'>
-        <Link href='/' className='text-lg font-medium'>
+      <header className='lg:hidden fixed top-0 left-0 right-0 h-16 flex items-center justify-between px-6 bg-background/90 backdrop-blur-md z-50 border-b border-border/20'>
+        <Link href='/' className='text-lg font-black uppercase tracking-tight'>
           {PROFILE.name}
         </Link>
         <div className='flex items-center gap-4'>
@@ -104,25 +107,31 @@ export function Sidebar() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className='lg:hidden fixed inset-0 top-16 bg-background z-40 p-6'
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className='lg:hidden fixed inset-0 top-16 bg-background z-40 flex flex-col justify-center px-8'
           >
-            <nav className='space-y-4'>
-              {NAV_ITEMS.map((item) => (
-                <Link
+            <nav className='space-y-6'>
+              {NAV_ITEMS.map((item, index) => (
+                <motion.div
                   key={item.href}
-                  href={item.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className={`block text-2xl font-medium transition-colors ${
-                    pathname === item.href
-                      ? 'text-foreground'
-                      : 'text-muted-foreground hover:text-foreground'
-                  }`}
+                  initial={{ opacity: 0, x: -40 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1 }}
                 >
-                  {item.label}
-                </Link>
+                  <Link
+                    href={item.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={`block text-4xl font-black uppercase tracking-tight transition-colors ${
+                      pathname === item.href
+                        ? 'text-foreground'
+                        : 'text-muted-foreground hover:text-foreground'
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                </motion.div>
               ))}
             </nav>
           </motion.div>
