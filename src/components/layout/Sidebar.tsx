@@ -11,7 +11,7 @@ import { PROFILE } from '@/constants/data';
 const NAV_ITEMS = [
   { label: 'Home', href: '/' },
   { label: 'Projects', href: '/projects' },
-  { label: 'Info', href: '/info' },
+  { label: 'Info', href: '/about-me' },
   { label: 'Contact', href: '/contact' },
 ];
 
@@ -27,7 +27,7 @@ export function Sidebar() {
         <div>
           <Link href='/' className='block mb-1'>
             <h1 className='text-2xl font-black tracking-tight uppercase'>
-              {PROFILE.name}
+              {PROFILE.logo}
             </h1>
           </Link>
           <p className='text-xs text-muted-foreground font-medium uppercase tracking-widest mb-16'>
@@ -69,7 +69,7 @@ export function Sidebar() {
             )}
           </button>
           <p className='text-xs text-muted-foreground font-medium'>
-            © 2024 {PROFILE.name}
+            © 2024 {PROFILE.logo}
           </p>
         </div>
       </aside>
@@ -77,7 +77,7 @@ export function Sidebar() {
       {/* Mobile Header */}
       <header className='lg:hidden fixed top-0 left-0 right-0 h-16 flex items-center justify-between px-6 bg-background/90 backdrop-blur-md z-50 border-b border-border/20'>
         <Link href='/' className='text-lg font-black uppercase tracking-tight'>
-          {PROFILE.name}
+          {PROFILE.logo}
         </Link>
         <div className='flex items-center gap-4'>
           <button

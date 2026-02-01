@@ -27,3 +27,17 @@ export interface ContactFormData {
   email: string;
   message: string;
 }
+
+export interface CareerProject {
+  title: string;
+  period: string;
+  description: string;
+  details: string[];
+}
+
+export interface Career {
+  company: string;
+  position: string;
+  period: string;
+  projects: CareerProject[];
+}

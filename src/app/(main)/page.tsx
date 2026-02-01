@@ -1,288 +1,299 @@
 'use client';
 
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useState, useRef, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
-import { PROFILE, PROJECTS, SKILLS } from '@/constants/data';
-import { MagneticButton } from '@/components/ui/MagneticButton';
+import { PROFILE, SKILLS, PROJECTS, CAREERS } from '@/constants/data';
 
-const STATS = [
-  { number: '5+', label: 'Years Experience' },
-  { number: '20+', label: 'Projects Completed' },
-  { number: '10+', label: 'Technologies' },
-  { number: '100%', label: 'Passion' },
-];
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4 },
+  },
+};
 
 export default function HomePage() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const heroRef = useRef<HTMLDivElement>(null);
+  const [isScrollable, setIsScrollable] = useState(false);
+  const contentRef = useRef<HTMLDivElement>(null);
 
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ['start start', 'end start'],
-  });
+  useEffect(() => {
+    const checkOverflow = () => {
+      if (contentRef.current) {
+        const { scrollHeight, clientHeight } = contentRef.current;
+        setIsScrollable(scrollHeight > clientHeight);
+      }
+    };
+    checkOverflow();
+    window.addEventListener('resize', checkOverflow);
+    return () => window.removeEventListener('resize', checkOverflow);
+  }, []);
 
-  const heroY = useTransform(scrollYProgress, [0, 1], [0, 150]);
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const handleShowMore = () => {
+    if (contentRef.current) {
+      contentRef.current.style.overflow = 'auto';
+      setIsScrollable(false);
+    }
+  };
 
   return (
-    <div ref={containerRef} className='min-h-screen'>
-      {/* Hero Section - Full Screen */}
-      <motion.section
-        ref={heroRef}
-        className='min-h-screen flex flex-col justify-center px-8 lg:px-16 relative'
-        style={{ y: heroY, opacity: heroOpacity }}
-      >
-        <motion.div
-          initial={{ opacity: 0, y: 60 }}
+    <div className='min-h-screen'>
+      <div className='max-w-[1000px] mx-auto px-5 py-10'>
+        {/* Navigation */}
+        <motion.nav
+          initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          className='max-w-5xl'
+          className='flex justify-between items-center mb-20'
         >
-          <h1 className='text-5xl md:text-7xl lg:text-8xl font-black leading-[0.95] tracking-tight mb-8'>
-            Creative
+          <div className='font-bold text-xl'>{PROFILE.logo}</div>
+          <Link
+            href={`mailto:${PROFILE.email}`}
+            className='border border-[#333] px-5 py-2 rounded-full text-sm transition-all hover:bg-white hover:text-black'
+          >
+            Get in Touch
+          </Link>
+        </motion.nav>
+
+        {/* Hero Section */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className='mb-16'
+        >
+          <h1 className='text-4xl md:text-6xl font-extrabold leading-tight tracking-tight bg-gradient-to-r from-white to-[#888] bg-clip-text text-transparent'>
+            Building Digital
             <br />
-            <span className='text-muted-foreground'>Developer</span>
-            <br />& Designer
+            Experience.
           </h1>
-        </motion.div>
+          <p className='text-[#888] mt-4 text-lg'>{PROFILE.description}</p>
+        </motion.section>
 
-        <motion.p
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className='text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-2xl leading-relaxed font-medium'
+        {/* Bento Grid */}
+        <motion.section
+          variants={containerVariants}
+          initial='hidden'
+          animate='visible'
+          className='grid grid-cols-1 md:grid-cols-4 gap-5'
+          style={{ gridAutoRows: '280px' }}
         >
-          {PROFILE.description}
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className='mt-12'
-        >
-          <MagneticButton>
-            <Link
-              href='/projects'
-              className='inline-flex items-center gap-3 text-lg font-bold uppercase tracking-wider hover:gap-5 transition-all duration-300'
-              data-cursor-text='View'
-            >
-              View Projects
-              <ArrowRight className='w-5 h-5' />
-            </Link>
-          </MagneticButton>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 1 }}
-          className='absolute bottom-12 left-8 lg:left-16'
-        >
-          <p className='text-sm text-muted-foreground font-medium'>
-            Scroll to explore
-          </p>
-        </motion.div>
-      </motion.section>
-
-      {/* Stats Section */}
-      <section className='py-24 lg:py-32 px-8 lg:px-16 border-t border-border/30'>
-        <div className='grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-16'>
-          {STATS.map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-100px' }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className='text-center lg:text-left'
-            >
-              <p className='text-5xl lg:text-7xl font-black mb-2'>
-                {stat.number}
-              </p>
-              <p className='text-sm lg:text-base text-muted-foreground font-medium uppercase tracking-wider'>
-                {stat.label}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* About Section */}
-      <section className='py-24 lg:py-32 px-8 lg:px-16 border-t border-border/30'>
-        <div className='grid lg:grid-cols-2 gap-16 lg:gap-24'>
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+          {/* Main Project - Large */}
+          <motion.a
+            href={PROJECTS[0]?.liveUrl || '#'}
+            target='_blank'
+            rel='noopener noreferrer'
+            variants={itemVariants}
+            className='col-span-1 md:col-span-2 row-span-2 bg-[#1a1a1a] rounded-3xl p-6 relative overflow-hidden flex flex-col justify-end border border-white/5 transition-transform hover:-translate-y-1 hover:border-white/20 group'
           >
-            <h2 className='text-4xl lg:text-6xl font-black mb-8 leading-tight'>
-              About
-              <br />
-              <span className='text-muted-foreground'>Me</span>
-            </h2>
+            <div
+              className='absolute inset-0 bg-cover bg-center opacity-40 transition-all duration-400 group-hover:opacity-70 group-hover:scale-105'
+              style={{
+                backgroundImage:
+                  "url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop')",
+              }}
+            />
+            <div className='relative z-10'>
+              <h3 className='text-2xl font-bold mb-1'>{PROJECTS[0]?.title}</h3>
+              <p className='text-[#888] text-sm'>
+                {PROJECTS[0]?.tags.join(', ')}
+              </p>
+            </div>
+          </motion.a>
+
+          {/* Sub Project - Tall */}
+          <motion.a
+            href={PROJECTS[1]?.liveUrl || '#'}
+            target='_blank'
+            rel='noopener noreferrer'
+            variants={itemVariants}
+            className='col-span-1 row-span-2 bg-[#1a1a1a] rounded-3xl p-6 relative overflow-hidden flex flex-col justify-end border border-white/5 transition-transform hover:-translate-y-1 hover:border-white/20 group'
+          >
+            <div
+              className='absolute inset-0 bg-cover bg-center opacity-40 transition-all duration-400 group-hover:opacity-70 group-hover:scale-105'
+              style={{
+                backgroundImage:
+                  "url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop')",
+              }}
+            />
+            <div className='relative z-10'>
+              <h3 className='text-xl font-bold mb-1'>{PROJECTS[1]?.title}</h3>
+              <p className='text-[#888] text-sm'>{PROJECTS[1]?.role}</p>
+            </div>
+          </motion.a>
+
+          {/* Tech Stack Card */}
+          <motion.div
+            variants={itemVariants}
+            className='col-span-1 bg-[#1a1a1a] rounded-3xl p-6 border border-white/5 flex flex-col'
+          >
+            <h3 className='text-xl font-bold mb-4'>Tech Stack</h3>
+            <div className='flex flex-wrap gap-2 mt-auto'>
+              {SKILLS.slice(0, 6).map((skill) => (
+                <span
+                  key={skill.name}
+                  className='bg-white/10 px-3 py-1.5 rounded-xl text-sm backdrop-blur-sm'
+                >
+                  {skill.name}
+                </span>
+              ))}
+            </div>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className='flex flex-col justify-center'
+          {/* GitHub Card - White */}
+          <motion.a
+            href={PROFILE.github}
+            target='_blank'
+            rel='noopener noreferrer'
+            variants={itemVariants}
+            className='col-span-1 bg-white text-black rounded-3xl p-6 border border-white/5 flex flex-col justify-between transition-transform hover:-translate-y-1'
           >
-            <p className='text-lg lg:text-xl text-muted-foreground leading-relaxed mb-8 font-medium'>
-              I create digital experiences that combine aesthetics with
-              functionality. With a focus on clean code and modern design
-              principles, I help brands stand out in the digital landscape.
+            <div>
+              <h3 className='text-xl font-bold mb-1'>Github</h3>
+              <p className='text-[#555] text-sm'>소스코드 보러가기</p>
+            </div>
+            <div className='text-4xl self-end'>↗</div>
+          </motion.a>
+
+          {/* Additional Project - Wide */}
+          <motion.a
+            href={PROJECTS[2]?.liveUrl || '#'}
+            target='_blank'
+            rel='noopener noreferrer'
+            variants={itemVariants}
+            className='col-span-1 md:col-span-2 bg-[#1a1a1a] rounded-3xl p-6 relative overflow-hidden flex flex-col justify-end border border-white/5 transition-transform hover:-translate-y-1 hover:border-white/20 group'
+          >
+            <div
+              className='absolute inset-0 bg-cover bg-center opacity-40 transition-all duration-400 group-hover:opacity-70 group-hover:scale-105'
+              style={{
+                backgroundImage:
+                  "url('https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=2574&auto=format&fit=crop')",
+              }}
+            />
+            <div className='relative z-10'>
+              <h3 className='text-xl font-bold mb-1'>{PROJECTS[2]?.title}</h3>
+              <p className='text-[#888] text-sm'>{PROJECTS[2]?.role}</p>
+            </div>
+          </motion.a>
+
+          {/* About Me Card - Wide */}
+          <motion.div
+            variants={itemVariants}
+            className='col-span-1 md:col-span-2 bg-[#1a1a1a] rounded-3xl p-6 border border-white/5 flex flex-col'
+          >
+            <h3 className='text-xl font-bold mb-3'>About Me</h3>
+            <p className='text-[#888] text-sm leading-relaxed'>
+              {PROFILE.description}
             </p>
-            <MagneticButton>
-              <Link
-                href='/info'
-                className='inline-flex items-center gap-3 text-base font-bold uppercase tracking-wider hover:gap-5 transition-all duration-300'
-              >
-                Learn More
-                <ArrowRight className='w-4 h-4' />
-              </Link>
-            </MagneticButton>
+            <div className='mt-4 space-y-2'>
+              {PROFILE.highlights?.map((highlight, index) => (
+                <p
+                  key={index}
+                  className='text-[#888] text-sm flex items-start gap-2'
+                >
+                  <span className='text-white/40'>•</span>
+                  {highlight}
+                </p>
+              ))}
+            </div>
           </motion.div>
-        </div>
-      </section>
 
-      {/* Skills Section */}
-      <section className='py-24 lg:py-32 px-8 lg:px-16 border-t border-border/30'>
-        <motion.h2
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className='text-4xl lg:text-6xl font-black mb-16'
-        >
-          Skills & <span className='text-muted-foreground'>Tools</span>
-        </motion.h2>
-
-        <div className='flex flex-wrap gap-4'>
-          {SKILLS.map((skill, index) => (
-            <motion.div
-              key={skill.name}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.05 }}
-              className='px-6 py-3 border border-border/50 rounded-full text-sm lg:text-base font-bold uppercase tracking-wider hover:bg-foreground hover:text-background transition-all duration-300 cursor-default'
-            >
-              {skill.name}
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* Projects Section */}
-      <section className='py-24 lg:py-32 px-8 lg:px-16 border-t border-border/30'>
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className='flex justify-between items-end mb-16'
-        >
-          <h2 className='text-4xl lg:text-6xl font-black'>
-            Selected <span className='text-muted-foreground'>Works</span>
-          </h2>
-          <MagneticButton className='hidden lg:block'>
-            <Link
-              href='/projects'
-              className='inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider hover:gap-4 transition-all duration-300'
-            >
-              View All
-              <ArrowRight className='w-4 h-4' />
-            </Link>
-          </MagneticButton>
-        </motion.div>
-
-        <div className='space-y-0'>
-          {PROJECTS.map((project, index) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className='group'
-            >
-              <Link
-                href={project.liveUrl || '#'}
-                target='_blank'
-                rel='noopener noreferrer'
-                className='flex items-center justify-between py-8 lg:py-12 border-b border-border/30 hover:border-foreground/50 transition-all duration-500'
-                data-cursor-text='Open'
-              >
-                <div className='flex items-baseline gap-6 lg:gap-12'>
-                  <span className='text-sm text-muted-foreground font-mono'>
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-                  <h3 className='text-2xl lg:text-4xl font-black transition-transform duration-500 group-hover:translate-x-4'>
-                    {project.title}
-                  </h3>
+          {/* Career Card - Wide & Tall */}
+          <motion.div
+            variants={itemVariants}
+            className='col-span-1 md:col-span-2 row-span-2 bg-[#1a1a1a] rounded-3xl p-6 border border-white/5 flex flex-col overflow-hidden relative'
+          >
+            <h3 className='text-xl font-bold mb-4'>Experience</h3>
+            <div ref={contentRef} className='flex-1 space-y-4 overflow-hidden'>
+              {CAREERS.map((career) => (
+                <div
+                  key={career.company}
+                  className='border-l-2 border-white/20 pl-4'
+                >
+                  <div className='flex items-center justify-between mb-1'>
+                    <h4 className='font-bold text-lg'>{career.company}</h4>
+                    <span className='text-[#888] text-xs'>{career.period}</span>
+                  </div>
+                  <p className='text-[#888] text-sm mb-2'>{career.position}</p>
+                  <div className='space-y-2'>
+                    {career.projects.map((project) => (
+                      <div
+                        key={project.title}
+                        className='bg-white/5 rounded-xl p-3'
+                      >
+                        <p className='text-sm font-medium mb-1'>
+                          {project.title}
+                        </p>
+                        <p className='text-[#888] text-xs line-clamp-2'>
+                          {project.description}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                <div className='flex items-center gap-6'>
-                  <span className='hidden lg:block text-sm text-muted-foreground font-medium'>
-                    {project.role}
-                  </span>
-                  <ArrowRight className='w-5 h-5 opacity-0 group-hover:opacity-100 transition-all duration-300 -translate-x-2 group-hover:translate-x-0' />
-                </div>
-              </Link>
-            </motion.div>
-          ))}
-        </div>
+              ))}
+            </div>
+            {isScrollable && (
+              <div className='absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#1a1a1a] to-transparent pt-12 pb-6 px-6'>
+                <button
+                  onClick={handleShowMore}
+                  className='w-full text-center text-[#888] text-sm hover:text-white transition-colors flex items-center justify-center gap-2 cursor-pointer'
+                >
+                  <span>↓</span>
+                  Show more
+                </button>
+              </div>
+            )}
+          </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className='mt-12 lg:hidden'
-        >
-          <MagneticButton>
-            <Link
-              href='/projects'
-              className='inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider'
-            >
-              View All Projects
-              <ArrowRight className='w-4 h-4' />
-            </Link>
-          </MagneticButton>
-        </motion.div>
-      </section>
+          {/* Stats Card */}
+          <motion.div
+            variants={itemVariants}
+            className='col-span-1 bg-[#1a1a1a] rounded-3xl p-6 border border-white/5 flex flex-col justify-between'
+          >
+            <h3 className='text-xl font-bold'>Stats</h3>
+            <div className='mt-auto space-y-3'>
+              <div>
+                <p className='text-3xl font-bold'>
+                  {CAREERS.reduce((acc, c) => acc + c.projects.length, 0)}+
+                </p>
+                <p className='text-[#888] text-xs'>Projects</p>
+              </div>
+              <div>
+                <p className='text-3xl font-bold'>{CAREERS.length}</p>
+                <p className='text-[#888] text-xs'>Companies</p>
+              </div>
+            </div>
+          </motion.div>
 
-      {/* CTA Section */}
-      <section className='py-32 lg:py-48 px-8 lg:px-16 border-t border-border/30 text-center'>
-        <motion.div
-          initial={{ opacity: 0, y: 60 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <h2 className='text-4xl md:text-6xl lg:text-7xl font-black mb-8 leading-tight'>
-            Let&apos;s Work
-            <br />
-            <span className='text-muted-foreground'>Together</span>
-          </h2>
-          <p className='text-lg lg:text-xl text-muted-foreground mb-12 max-w-xl mx-auto font-medium'>
-            Have a project in mind? Let&apos;s create something amazing
-            together.
-          </p>
-          <MagneticButton>
-            <Link
-              href='/contact'
-              className='inline-flex items-center gap-3 text-lg font-bold uppercase tracking-wider border border-foreground/30 px-8 py-4 hover:bg-foreground hover:text-background transition-all duration-300'
-              data-cursor-text='Contact'
-            >
-              Get in Touch
-              <ArrowRight className='w-5 h-5' />
-            </Link>
-          </MagneticButton>
-        </motion.div>
-      </section>
+          {/* Contact Card */}
+          <motion.a
+            href={`mailto:${PROFILE.email}`}
+            variants={itemVariants}
+            className='col-span-1 bg-[#1a1a1a] rounded-3xl p-6 border border-white/5 flex flex-col justify-between transition-transform hover:-translate-y-1 hover:border-white/20'
+          >
+            <h3 className='text-xl font-bold'>Contact</h3>
+            <div className='mt-auto'>
+              <p className='text-[#888] text-sm mb-2'>{PROFILE.location}</p>
+              <div className='flex items-center justify-between'>
+                <p className='text-sm truncate pr-2'>{PROFILE.email}</p>
+                <span className='text-2xl'>↗</span>
+              </div>
+            </div>
+          </motion.a>
+        </motion.section>
+      </div>
     </div>
   );
 }

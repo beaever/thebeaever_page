@@ -1,11 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { Sidebar } from './Sidebar';
-import { PageTransition } from './PageTransition';
 import { useThemeStore } from '@/stores/useThemeStore';
-import { FloatingObjects } from '@/components/background/FloatingObjects';
-import { NoiseBackground } from '@/components/background/NoiseBackground';
 
 interface MainLayoutProps {
   children: React.ReactNode;
@@ -15,22 +11,12 @@ export function MainLayout({ children }: MainLayoutProps) {
   const { theme } = useThemeStore();
 
   useEffect(() => {
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
+    document.documentElement.classList.add('dark');
   }, [theme]);
 
   return (
-    <div className='min-h-screen'>
-      <NoiseBackground />
-      <FloatingObjects />
-      <div className='fixed inset-0 bg-background/60 -z-5 pointer-events-none' />
-      <Sidebar />
-      <main className='lg:ml-72 min-h-screen pt-16 lg:pt-0'>
-        <PageTransition>{children}</PageTransition>
-      </main>
+    <div className='min-h-screen bg-[#0f0f0f] text-white'>
+      <main>{children}</main>
     </div>
   );
 }
