@@ -56,18 +56,46 @@ export const PROJECTS: Project[] = [
 ];
 
 export const SKILLS: Skill[] = [
-  { name: 'JavaScript', icon: 'javascript', category: 'frontend' },
-  { name: 'TypeScript', icon: 'typescript', category: 'frontend' },
-  { name: 'React', icon: 'react', category: 'frontend' },
-  { name: 'Next.js', icon: 'nextjs', category: 'frontend' },
-  { name: 'React Query', icon: 'reactquery', category: 'frontend' },
-  { name: 'Recoil', icon: 'recoil', category: 'frontend' },
-  { name: 'SWR', icon: 'swr', category: 'frontend' },
-  { name: 'Emotion', icon: 'emotion', category: 'frontend' },
-  { name: 'Styled-components', icon: 'styledcomponents', category: 'frontend' },
-  { name: 'Turborepo', icon: 'turborepo', category: 'tools' },
-  { name: 'pnpm', icon: 'pnpm', category: 'tools' },
-  { name: 'Storybook', icon: 'storybook', category: 'tools' },
+  {
+    name: 'JavaScript',
+    icon: 'javascript',
+    category: 'frontend',
+    proficiency: 90,
+  },
+  {
+    name: 'TypeScript',
+    icon: 'typescript',
+    category: 'frontend',
+    proficiency: 90,
+  },
+  { name: 'React', icon: 'react', category: 'frontend', proficiency: 95 },
+  { name: 'Next.js', icon: 'nextjs', category: 'frontend', proficiency: 85 },
+  {
+    name: 'React Query',
+    icon: 'reactquery',
+    category: 'frontend',
+    proficiency: 80,
+  },
+  { name: 'Recoil', icon: 'recoil', category: 'frontend', proficiency: 75 },
+  { name: 'SWR', icon: 'swr', category: 'frontend', proficiency: 80 },
+  { name: 'Emotion', icon: 'emotion', category: 'frontend', proficiency: 85 },
+  {
+    name: 'Styled-components',
+    icon: 'styledcomponents',
+    category: 'frontend',
+    proficiency: 85,
+  },
+  { name: 'Turborepo', icon: 'turborepo', category: 'tools', proficiency: 80 },
+  { name: 'pnpm', icon: 'pnpm', category: 'tools', proficiency: 85 },
+  { name: 'Storybook', icon: 'storybook', category: 'tools', proficiency: 75 },
+];
+
+export const SOFT_SKILLS: string[] = [
+  '구조적 사고',
+  '문제 해결 능력',
+  '팀 커뮤니케이션',
+  '코드 리뷰 문화',
+  '자기 주도 학습',
 ];
 
 export const CAREERS: Career[] = [
@@ -184,3 +212,76 @@ export const NAV_ITEMS = [
   { label: 'Projects', href: '#projects' },
   { label: 'Contact', href: '#contact' },
 ];
+
+export const EXPERIENCES = [
+  { from: '2021.07', to: '2021.12' }, // HubDnc
+  { from: '2022.01', to: '2025.04' }, // NCITS
+  // 만약 현재 진행 중인 경력이 있다면 EX:{ from: '2025.05', to: 'Present' } 추가
+];
+
+export const PORTFOLIO_PROJECTS = [
+  {
+    title: '고성능 이커머스 플랫폼',
+    problem: '대규모 이미지 로딩으로 인한 성능 저하.',
+    solution:
+      'Image Optimization 전략 및 가상 리스트(Virtual List) 적용으로 렌더링 성능',
+    metrics: '60% 개선',
+    technologies: [
+      'Next.js Image 컴포넌트 활용',
+      'react-window로 Virtual List 구현',
+      'Lazy Loading 및 Intersection Observer 적용',
+    ],
+  },
+  {
+    title: '협업용 실시간 화이트보드',
+    problem: '동시 접속자 증가 시 데이터 동기화 지연.',
+    solution: 'WebSocket 이벤트 스로틀링 및 데이터 정규화로 안정성 확보.',
+    metrics: undefined,
+    technologies: [
+      'Socket.io 기반 실시간 통신 구현',
+      'lodash.throttle로 이벤트 최적화',
+      'Normalizr로 데이터 구조 정규화',
+    ],
+  },
+];
+
+export const ACHIEVEMENTS = {
+  NCITS: [
+    {
+      title: '디자인 시스템 고도화',
+      description: '및 전사 공통 컴포넌트 라이브러리 배포.',
+      metrics: '30% 향상',
+      metricsLabel: 'UI 개발 생산성',
+      tags: [
+        'Turborepo 기반 Monorepo 아키텍처 구축',
+        'Compound Pattern 적용으로 확장성 확보',
+      ],
+      accentColor: 'primary' as const,
+    },
+    {
+      title: 'Next.js SSR 최적화',
+      description: '.',
+      metrics: '1.2초 단축',
+      metricsLabel: '초기 로딩 속도(LCP)',
+      tags: [
+        'getServerSideProps 활용한 서버 사이드 패칭',
+        'Dynamic Import 및 Code Splitting 적용',
+      ],
+      accentColor: 'secondary' as const,
+    },
+  ],
+  HUBDNC: [
+    {
+      title: 'React 마이그레이션',
+      description: '레거시 jQuery 프로젝트를 React로 성공적으로 마이그레이션.',
+      tags: [],
+      accentColor: 'primary' as const,
+    },
+    {
+      title: '실시간 대시보드 구축',
+      description: '실시간 데이터 시각화 대시보드 구축 및 상태 관리 최적화.',
+      tags: [],
+      accentColor: 'primary' as const,
+    },
+  ],
+};

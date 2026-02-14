@@ -11,11 +11,12 @@ export function MainLayout({ children }: MainLayoutProps) {
   const { theme } = useThemeStore();
 
   useEffect(() => {
-    document.documentElement.classList.add('dark');
+    document.documentElement.classList.remove('light', 'dark');
+    document.documentElement.classList.add(theme);
   }, [theme]);
 
   return (
-    <div className='min-h-screen bg-[#0f0f0f] text-white'>
+    <div className='min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] transition-colors duration-300'>
       <main>{children}</main>
     </div>
   );

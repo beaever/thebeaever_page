@@ -14,6 +14,7 @@ export interface Skill {
   name: string;
   icon: string;
   category: 'frontend' | 'backend' | 'tools' | 'etc';
+  proficiency?: number;
 }
 
 export interface SocialLink {
@@ -40,4 +41,20 @@ export interface Career {
   position: string;
   period: string;
   projects: CareerProject[];
+}
+
+export interface Achievement {
+  title: string;
+  description: string;
+  metrics?: string;
+  tags?: string[];
+  accentColor?: 'primary' | 'secondary';
+}
+
+export interface PortfolioProject {
+  title: string;
+  problem: string;
+  solution: string;
+  metrics?: string;
+  technologies: string[];
 }

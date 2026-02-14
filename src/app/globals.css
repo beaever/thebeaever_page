@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
+@import '../styles/theme.css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -126,6 +127,15 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+@keyframes progress-fill {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
 }
 
 ::selection {

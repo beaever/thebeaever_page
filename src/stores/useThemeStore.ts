@@ -12,13 +12,24 @@ export const useThemeStore = create<ThemeState>()(
     (set) => ({
       theme: 'dark',
       toggleTheme: () =>
-        set((state) => ({
-          theme: state.theme === 'light' ? 'dark' : 'light',
-        })),
-      setTheme: (theme) => set({ theme }),
+        set((state) => {
+          const newTheme = state.theme === 'light' ? 'dark' : 'light';
+          if (typeof window !== 'undefined') {
+            document.documentElement.classList.remove('light', 'dark');
+            document.documentElement.classList.add(newTheme);
+          }
+          return { theme: newTheme };
+        }),
+      setTheme: (theme) => {
+        if (typeof window !== 'undefined') {
+          document.documentElement.classList.remove('light', 'dark');
+          document.documentElement.classList.add(theme);
+        }
+        set({ theme });
+      },
     }),
     {
       name: 'theme-storage',
-    }
-  )
+    },
+  ),
 );
