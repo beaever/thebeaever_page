@@ -184,14 +184,14 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     title: 'WORKLOG+',
     description: 'ITSM 개념의 업무관리 시스템',
     technologies: [
-      `Package Manager: pnpm`,
-      `Build System: Turborepo`,
-      `Web: Next.js 15 (App Router)`,
-      `Mobile: React Native + Expo (WebView)`,
-      `Styling: Tailwind CSS + shadcn/ui`,
-      `State: Zustand`,
-      `Data Fetching: TanStack Query`,
-      `Language: TypeScript (strict mode)`,
+      `pnpm`,
+      `Turborepo`,
+      `Next.js 15 (App Router)`,
+      `React Native + Expo (WebView)`,
+      `Tailwind CSS + shadcn/ui`,
+      `Zustand`,
+      `TanStack Query`,
+      `TypeScript (strict mode)`,
     ],
     demoUrl: 'https://worklog-plus.vercel.app/',
     githubUrl: 'https://github.com/beaever/worklog-plus',
@@ -199,7 +199,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
   {
     title: 'GIGGY',
     description: '호주 한인 대상 채용 플랫폼',
-    technologies: ['ReactNative'],
+    technologies: ['ReactNative CLI', 'Typescript', 'TanStack Query'],
     demoUrl: 'https://giggy.online/',
   },
   {
@@ -216,44 +216,3 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     githubUrl: 'https://github.com/beaever/wholly',
   },
 ];
-
-export const ACHIEVEMENTS = {
-  NCITS: [
-    {
-      title: '디자인 시스템 고도화',
-      description: '및 전사 공통 컴포넌트 라이브러리 배포.',
-      metrics: '30% 향상',
-      metricsLabel: 'UI 개발 생산성',
-      tags: [
-        'Turborepo 기반 Monorepo 아키텍처 구축',
-        'Compound Pattern 적용으로 확장성 확보',
-      ],
-      accentColor: 'primary' as const,
-    },
-    {
-      title: 'Next.js SSR 최적화',
-      description: '.',
-      metrics: '1.2초 단축',
-      metricsLabel: '초기 로딩 속도(LCP)',
-      tags: [
-        'getServerSideProps 활용한 서버 사이드 패칭',
-        'Dynamic Import 및 Code Splitting 적용',
-      ],
-      accentColor: 'secondary' as const,
-    },
-  ],
-  HUBDNC: [
-    {
-      title: 'React 마이그레이션',
-      description: '레거시 jQuery 프로젝트를 React로 성공적으로 마이그레이션.',
-      tags: [],
-      accentColor: 'primary' as const,
-    },
-    {
-      title: '실시간 대시보드 구축',
-      description: '실시간 데이터 시각화 대시보드 구축 및 상태 관리 최적화.',
-      tags: [],
-      accentColor: 'primary' as const,
-    },
-  ],
-};

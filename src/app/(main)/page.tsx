@@ -3,10 +3,10 @@
 import { Header } from '@/components/layout/Header';
 import { FloatingText } from '@/components/background/FloatingText';
 import { NoiseTexture } from '@/components/background/NoiseTexture';
-import { HeroSection } from '@/components/sections/HeroSection';
-import { ExperienceSection } from '@/components/sections/ExperienceSection';
-import { ProjectsSection } from '@/components/sections/ProjectsSection';
-import { ContactSection } from '@/components/sections/ContactSection';
+import { HeroSection } from '@/features/HeroSection';
+import { ExperienceSection } from '@/features/ExperienceSection';
+import { ProjectsSection } from '@/features/ProjectsSection';
+import { ContactSection } from '@/features/ContactSection';
 import { Footer } from '@/components/layout/Footer';
 
 export default function HomePage() {
