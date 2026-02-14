@@ -1,9 +1,9 @@
 /**
  * Text Component (Compound Pattern)
- * 
+ *
  * 일관된 타이포그래피 시스템을 제공하는 컴포넌트
  * UI 라이브러리로 이주 가능하도록 프로젝트 의존성 0%로 설계
- * 
+ *
  * @example
  * <Text.Heading size="xl">Title</Text.Heading>
  * <Text.Body size="lg" color="secondary">Description</Text.Body>
@@ -27,6 +27,16 @@ interface TextBodyProps {
 }
 
 interface TextLabelProps {
+  children: ReactNode;
+  className?: string;
+}
+
+interface TextButtonProps {
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  href?: string;
+  target?: '_blank' | '_self';
+  onClick?: () => void;
   children: ReactNode;
   className?: string;
 }
@@ -86,8 +96,64 @@ const Label = ({ children, className }: TextLabelProps) => {
   );
 };
 
+const Button = ({
+  variant = 'primary',
+  size = 'md',
+  href,
+  target = '_self',
+  onClick,
+  children,
+  className,
+}: TextButtonProps) => {
+  const sizeClasses = {
+    sm: 'px-4 py-2 text-sm',
+    md: 'px-6 py-2.5 text-base',
+    lg: 'px-8 py-3 text-base',
+  };
+
+  const variantClasses = {
+    primary:
+      'bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-white font-medium hover:shadow-lg hover:shadow-[var(--shadow-accent)] transition-all',
+    secondary:
+      'bg-[var(--bg-surface)] text-[var(--text-primary)] font-medium border border-[var(--border-primary)] hover:bg-[var(--bg-secondary)] transition-all',
+    outline:
+      'border border-[var(--border-primary)] text-[var(--text-primary)] font-medium hover:bg-[var(--bg-surface)] transition-all',
+    ghost:
+      'text-[var(--text-secondary)] font-medium hover:text-[var(--accent-primary)] hover:bg-[var(--bg-surface)] transition-all',
+  };
+
+  const baseClasses = 'rounded-lg inline-flex items-center justify-center';
+
+  const combinedClasses = cn(
+    baseClasses,
+    sizeClasses[size],
+    variantClasses[variant],
+    className,
+  );
+
+  if (href) {
+    return (
+      <a
+        href={href}
+        target={target}
+        rel={target === '_blank' ? 'noopener noreferrer' : undefined}
+        className={combinedClasses}
+      >
+        {children}
+      </a>
+    );
+  }
+
+  return (
+    <button onClick={onClick} className={combinedClasses}>
+      {children}
+    </button>
+  );
+};
+
 export const Text = {
   Heading,
   Body,
   Label,
+  Button,
 };

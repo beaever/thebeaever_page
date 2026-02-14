@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { PROJECTS } from '@/constants/data';
+import { PORTFOLIO_PROJECTS } from '@/constants/data';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -55,8 +55,8 @@ export function ProjectsSection() {
           viewport={{ once: true, margin: '-50px' }}
           className='grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto'
         >
-          {PROJECTS.map((project) => (
-            <motion.div key={project.id} variants={itemVariants}>
+          {PORTFOLIO_PROJECTS.map((project) => (
+            <motion.div key={project.title} variants={itemVariants}>
               <Card className='h-full flex flex-col overflow-hidden group hover:shadow-lg transition-shadow'>
                 <div className='aspect-video bg-muted relative overflow-hidden'>
                   <div className='absolute inset-0 bg-linear-to-br from-primary/20 to-secondary/20 group-hover:opacity-0 transition-opacity' />
@@ -74,22 +74,22 @@ export function ProjectsSection() {
                 </CardHeader>
                 <CardContent className='flex-1 flex flex-col justify-between gap-4'>
                   <div className='flex flex-wrap gap-2'>
-                    {project.tags.map((tag) => (
-                      <Badge key={tag} variant='outline' className='text-xs'>
-                        {tag}
+                    {project.technologies.map((tech) => (
+                      <Badge key={tech} variant='outline' className='text-xs'>
+                        {tech}
                       </Badge>
                     ))}
                   </div>
                   <div className='flex gap-2'>
-                    {project.liveUrl && (
+                    {project.demoUrl && (
                       <Button variant='outline' size='sm' asChild>
                         <a
-                          href={project.liveUrl}
+                          href={project.demoUrl}
                           target='_blank'
                           rel='noopener noreferrer'
                         >
                           <ExternalLink className='h-4 w-4 mr-2' />
-                          Live
+                          Demo
                         </a>
                       </Button>
                     )}

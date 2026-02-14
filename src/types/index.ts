@@ -29,18 +29,18 @@ export interface ContactFormData {
   message: string;
 }
 
-export interface CareerProject {
+export interface ExperienceProject {
   title: string;
   period: string;
   description: string;
   details: string[];
 }
 
-export interface Career {
+export interface Experience {
   company: string;
   position: string;
   period: string;
-  projects: CareerProject[];
+  projects: ExperienceProject[];
 }
 
 export interface Achievement {
@@ -53,8 +53,8 @@ export interface Achievement {
 
 export interface PortfolioProject {
   title: string;
-  problem: string;
-  solution: string;
-  metrics?: string;
+  description: string;
   technologies: string[];
+  demoUrl?: string;
+  githubUrl?: string;
 }

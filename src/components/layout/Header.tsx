@@ -14,7 +14,7 @@ const NAV_ITEMS = [
   { label: 'Contact', href: '#contact' },
 ];
 
-export function GNB() {
+export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme, toggleTheme } = useThemeStore();

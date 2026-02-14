@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-interface CareerPeriod {
+interface ExperiencePeriod {
   years: number;
   months: number;
   totalMonths: number;
@@ -16,10 +16,10 @@ const parseDateString = (dateStr: string): Date => {
   return new Date(dateStr.replace(/\./g, '-'));
 };
 
-export const useCareerCalculator = (
+export const useExperienceCalculator = (
   from: string,
   to?: string,
-): CareerPeriod => {
+): ExperiencePeriod => {
   return useMemo(() => {
     const startDate = parseDateString(from);
     const endDate =
@@ -51,7 +51,7 @@ export const useCareerCalculator = (
   }, [from, to]);
 };
 
-export const useTotalCareer = (experiences: Experience[]): string => {
+export const useTotalExperience = (experiences: Experience[]): string => {
   return useMemo(() => {
     let totalMonths = 0;
 

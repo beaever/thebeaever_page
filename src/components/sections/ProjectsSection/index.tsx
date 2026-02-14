@@ -12,9 +12,9 @@ import { fadeInUp, staggerContainer } from '@/lib/animations';
 
 export function ProjectsSection() {
   return (
-    <Section id='projects' background="secondary">
-      <AnimatedWrapper variant="fadeInUp">
-        <Text.Heading size="md" className="mb-12 md:mb-16">
+    <Section id='projects' background='secondary'>
+      <AnimatedWrapper variant='fadeInUp'>
+        <Text.Heading size='md' className='mb-12 md:mb-16'>
           Projects
         </Text.Heading>
       </AnimatedWrapper>
@@ -24,11 +24,11 @@ export function ProjectsSection() {
         whileInView='visible'
         viewport={{ once: true }}
         variants={staggerContainer}
-        className='grid grid-cols-1 lg:grid-cols-2 gap-8'
+        className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'
       >
         {PORTFOLIO_PROJECTS.map((project, index) => (
           <motion.div key={index} variants={fadeInUp}>
-            <ProjectCard {...project} />
+            <ProjectCard {...project} index={index} />
           </motion.div>
         ))}
       </motion.div>

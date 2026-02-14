@@ -4,6 +4,7 @@
 
 import { Zap, TrendingUp } from 'lucide-react';
 import { GlassCard } from '@/components/common/GlassCard';
+import { Text } from '@/components/ui/Text';
 
 interface AchievementCardProps {
   title: string;
@@ -33,7 +34,7 @@ export function AchievementCard({
       : 'group-hover:text-[var(--accent-secondary)]';
 
   return (
-    <GlassCard variant="group" padding="md" rounded="xl">
+    <GlassCard variant='group' padding='md' rounded='xl'>
       <div className='flex items-start justify-between mb-4'>
         <Zap className={accentClass} size={24} />
         <TrendingUp
@@ -41,17 +42,19 @@ export function AchievementCard({
           size={20}
         />
       </div>
-      <h4 className='font-bold text-lg mb-2'>{title}</h4>
+      <Text.Heading size='xs' as='h4' className='mb-2'>
+        {title}
+      </Text.Heading>
       {metrics && metricsLabel && (
-        <p className='text-[var(--text-secondary)] text-sm leading-relaxed mb-3'>
-          {metricsLabel}{' '}
-          <strong className={accentClass}>{metrics}</strong> {description}
-        </p>
+        <Text.Body size='sm' color='secondary' className='leading-relaxed mb-3'>
+          {metricsLabel} <strong className={accentClass}>{metrics}</strong>{' '}
+          {description}
+        </Text.Body>
       )}
       {!metrics && (
-        <p className='text-[var(--text-secondary)] text-sm leading-relaxed mb-3'>
+        <Text.Body size='sm' color='secondary' className='leading-relaxed mb-3'>
           {description}
-        </p>
+        </Text.Body>
       )}
       {tags.length > 0 && (
         <ul className='text-xs text-[var(--text-tertiary)] space-y-1'>

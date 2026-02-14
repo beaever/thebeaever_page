@@ -10,7 +10,7 @@ export function FloatingText() {
         initial={{ x: '0%' }}
         animate={{ x: '-50%' }}
         transition={{
-          duration: 60,
+          duration: 70,
           repeat: Infinity,
           ease: 'linear',
         }}
@@ -22,10 +22,10 @@ export function FloatingText() {
       </motion.div>
       <motion.div
         className='absolute whitespace-nowrap text-[20vw] font-black tracking-tighter'
-        initial={{ x: '0%' }}
-        animate={{ x: '-50%' }}
+        initial={{ x: '-50%' }}
+        animate={{ x: '0%' }}
         transition={{
-          duration: 60,
+          duration: 30,
           repeat: Infinity,
           ease: 'linear',
         }}
@@ -56,7 +56,7 @@ export function FloatingText() {
         initial={{ x: '-50%' }}
         animate={{ x: '0%' }}
         transition={{
-          duration: 60,
+          duration: 40,
           repeat: Infinity,
           ease: 'linear',
         }}

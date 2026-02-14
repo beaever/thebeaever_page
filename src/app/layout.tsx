@@ -17,6 +17,10 @@ export const metadata: Metadata = {
   description: '사용자 경험을 중시하는 프론트엔드 개발자 포트폴리오입니다.',
   keywords: ['Frontend', 'Developer', 'React', 'TypeScript', 'Next.js'],
   authors: [{ name: 'THEBEAEVER' }],
+  icons: {
+    icon: '/portfolio/favicon.ico',
+    apple: '/portfolio/apple-touch-icon.png',
+  },
   openGraph: {
     title: 'Portfolio | Frontend Developer',
     description: '사용자 경험을 중시하는 프론트엔드 개발자 포트폴리오입니다.',

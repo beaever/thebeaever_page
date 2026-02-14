@@ -1,4 +1,4 @@
-import type { Project, Skill, SocialLink, Career } from '@/types';
+import type { Skill, SocialLink, Experience, PortfolioProject } from '@/types';
 
 export const PROFILE = {
   logo: 'THEBEAEVER',
@@ -15,45 +15,6 @@ export const PROFILE = {
   github: 'https://github.com/beaever',
   location: 'Seoul, South Korea',
 };
-
-export const PROJECTS: Project[] = [
-  {
-    id: '1',
-    title: 'Project One',
-    description:
-      'React와 TypeScript를 활용한 웹 애플리케이션입니다. 사용자 인터페이스 최적화에 중점을 두었습니다.',
-    image: '/projects/project1.png',
-    tags: ['React', 'TypeScript', 'Tailwind CSS'],
-    liveUrl: 'https://example.com',
-    githubUrl: 'https://github.com',
-    date: 'Dec.2024',
-    role: 'Design & Dev',
-  },
-  {
-    id: '2',
-    title: 'Project Two',
-    description:
-      'Next.js 기반의 풀스택 프로젝트입니다. SSR과 API Routes를 활용했습니다.',
-    image: '/projects/project2.png',
-    tags: ['Next.js', 'Prisma', 'PostgreSQL'],
-    liveUrl: 'https://example.com',
-    githubUrl: 'https://github.com',
-    date: 'Nov.2024',
-    role: 'Dev',
-  },
-  {
-    id: '3',
-    title: 'Project Three',
-    description:
-      '모바일 반응형 대시보드 애플리케이션입니다. 데이터 시각화에 초점을 맞췄습니다.',
-    image: '/projects/project3.png',
-    tags: ['React', 'D3.js', 'Node.js'],
-    liveUrl: 'https://example.com',
-    githubUrl: 'https://github.com',
-    date: 'Oct.2024',
-    role: 'Design & Dev',
-  },
-];
 
 export const SKILLS: Skill[] = [
   {
@@ -98,7 +59,7 @@ export const SOFT_SKILLS: string[] = [
   '자기 주도 학습',
 ];
 
-export const CAREERS: Career[] = [
+export const EXPERIENCES: Experience[] = [
   {
     company: 'NCITS',
     position: 'Frontend Developer',
@@ -119,10 +80,10 @@ export const CAREERS: Career[] = [
         ],
       },
       {
-        title: 'ITSM Incident(NCI) 운영 플랫폼 개발',
+        title: 'ITSM Incident(NCI) 장애 관리 시스템 개발 (WEB)',
         period: '2024.01 ~ 2025.04',
         description:
-          '사내 서비스 및 게임 장애를 관리하는 운영자용 웹 플랫폼 개발',
+          '사내 서비스 및 게임 장애를 관리하는 운영자용 웹 시스템 개발',
         details: [
           'Next.js, React, TypeScript 기반으로 페이지 단위 책임 개발',
           'Opsgenie Open API 연동 데이터를 WebSocket 기반 BFF를 통해 10초 단위 실시간 갱신',
@@ -130,7 +91,7 @@ export const CAREERS: Career[] = [
         ],
       },
       {
-        title: 'ITSM Servicedesk Web 개발',
+        title: 'ITSM Servicedesk 개발 (WEB)',
         period: '2022.01 ~ 2023.10',
         description: 'Lerna 기반 Monorepo 환경에서 ITSM 서비스 개발 및 운영',
         details: [
@@ -143,7 +104,7 @@ export const CAREERS: Career[] = [
         ],
       },
       {
-        title: 'ITSM Servicedesk Mobile 개발',
+        title: 'ITSM Servicedesk 개발 (MOBILE)',
         period: '2022.01 ~ 2023.10',
         description: 'React Native, Expo 기반 모바일 앱 개발',
         details: [
@@ -209,39 +170,50 @@ export const SOCIAL_LINKS: SocialLink[] = [
 export const NAV_ITEMS = [
   { label: 'About', href: '#about' },
   { label: 'Skills', href: '#skills' },
-  { label: 'Projects', href: '#projects' },
   { label: 'Contact', href: '#contact' },
 ];
 
-export const EXPERIENCES = [
+export const EXPERIENCES_DATE = [
   { from: '2021.07', to: '2021.12' }, // HubDnc
   { from: '2022.01', to: '2025.04' }, // NCITS
   // 만약 현재 진행 중인 경력이 있다면 EX:{ from: '2025.05', to: 'Present' } 추가
 ];
 
-export const PORTFOLIO_PROJECTS = [
+export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
   {
-    title: '고성능 이커머스 플랫폼',
-    problem: '대규모 이미지 로딩으로 인한 성능 저하.',
-    solution:
-      'Image Optimization 전략 및 가상 리스트(Virtual List) 적용으로 렌더링 성능',
-    metrics: '60% 개선',
+    title: 'WORKLOG+',
+    description: 'ITSM 개념의 업무관리 시스템',
     technologies: [
-      'Next.js Image 컴포넌트 활용',
-      'react-window로 Virtual List 구현',
-      'Lazy Loading 및 Intersection Observer 적용',
+      `Package Manager: pnpm`,
+      `Build System: Turborepo`,
+      `Web: Next.js 15 (App Router)`,
+      `Mobile: React Native + Expo (WebView)`,
+      `Styling: Tailwind CSS + shadcn/ui`,
+      `State: Zustand`,
+      `Data Fetching: TanStack Query`,
+      `Language: TypeScript (strict mode)`,
     ],
+    demoUrl: 'https://worklog-plus.vercel.app/',
+    githubUrl: 'https://github.com/beaever/worklog-plus',
   },
   {
-    title: '협업용 실시간 화이트보드',
-    problem: '동시 접속자 증가 시 데이터 동기화 지연.',
-    solution: 'WebSocket 이벤트 스로틀링 및 데이터 정규화로 안정성 확보.',
-    metrics: undefined,
+    title: 'GIGGY',
+    description: '호주 한인 대상 채용 플랫폼',
+    technologies: ['ReactNative'],
+    demoUrl: 'https://giggy.online/',
+  },
+  {
+    title: 'WHOLLY',
+    description:
+      '호주 워킹홀리데이 준비부터 정착까지, 단계별 체크리스트로 완벽하게 준비를 위한 웹,앱 서비스 ',
     technologies: [
-      'Socket.io 기반 실시간 통신 구현',
-      'lodash.throttle로 이벤트 최적화',
-      'Normalizr로 데이터 구조 정규화',
+      'ReactNative',
+      'Expo',
+      'Next.js',
+      'TypeScript',
+      'Tailwind CSS',
     ],
+    githubUrl: 'https://github.com/beaever/wholly',
   },
 ];
 

@@ -4,62 +4,82 @@
 
 import { ArrowUpRight } from 'lucide-react';
 import { GlassCard } from '@/components/common/GlassCard';
+import { Text } from '@/components/ui/Text';
+import { PortfolioProject } from '@/types';
 
-interface ProjectCardProps {
-  title: string;
-  problem: string;
-  solution: string;
-  metrics?: string;
-  technologies: string[];
+interface ProjectCardProps extends PortfolioProject {
+  index?: number;
 }
 
 export function ProjectCard({
   title,
-  problem,
-  solution,
-  metrics,
+  description,
+  demoUrl,
+  githubUrl,
   technologies,
+  index = 0,
 }: ProjectCardProps) {
   return (
-    <GlassCard variant="group" padding="lg">
-      <div className='flex items-start justify-between mb-6'>
-        <h3 className='text-2xl font-bold'>{title}</h3>
+    <GlassCard variant='group' padding='lg' className='h-full flex flex-col'>
+      <div className='flex items-start justify-between mb-4'>
+        <span className='text-xs text-[var(--text-tertiary)] font-mono'>
+          {String(index + 1).padStart(2, '0')}
+        </span>
         <ArrowUpRight
           className='text-[var(--text-quaternary)] group-hover:text-[var(--accent-primary)] transition-colors'
-          size={24}
+          size={20}
         />
       </div>
 
-      <div className='space-y-4'>
-        <div>
-          <p className='text-sm text-[var(--accent-primary)] font-semibold mb-2'>
-            문제
-          </p>
-          <p className='text-[var(--text-secondary)] text-sm'>{problem}</p>
-        </div>
-        <div>
-          <p className='text-sm text-[var(--accent-secondary)] font-semibold mb-2'>
-            해결
-          </p>
-          <p className='text-[var(--text-secondary)] text-sm mb-2'>
-            {solution}
-            {metrics && (
-              <>
-                {' '}
-                <strong className='text-[var(--accent-secondary)]'>
-                  {metrics}
-                </strong>
-                .
-              </>
-            )}
-          </p>
-          <ul className='text-xs text-[var(--text-tertiary)] space-y-1'>
-            {technologies.map((tech, index) => (
-              <li key={index}>• {tech}</li>
-            ))}
-          </ul>
+      <div className='flex-1 space-y-4'>
+        <Text.Heading
+          size='sm'
+          as='h3'
+          className='group-hover:text-[var(--accent-primary)] transition-colors'
+        >
+          {title}
+        </Text.Heading>
+
+        <Text.Body size='sm' color='secondary'>
+          {description}
+        </Text.Body>
+
+        <div className='flex flex-wrap gap-2'>
+          {technologies.map((tech, techIndex) => (
+            <span
+              key={techIndex}
+              className='px-3 py-1 bg-[var(--bg-surface)]/80 rounded-full text-xs font-medium text-[var(--text-secondary)] hover:bg-[var(--bg-surface)] transition-colors'
+            >
+              {tech}
+            </span>
+          ))}
         </div>
       </div>
+
+      {(demoUrl || githubUrl) && (
+        <div className='flex flex-wrap gap-3 pt-4 mt-4 border-t border-[var(--border-primary)]/30'>
+          {demoUrl && (
+            <Text.Button
+              variant='primary'
+              size='sm'
+              href={demoUrl}
+              target='_blank'
+            >
+              Demo
+            </Text.Button>
+          )}
+          {githubUrl && (
+            <Text.Button
+              variant='outline'
+              size='sm'
+              href={githubUrl}
+              target='_blank'
+            >
+              GitHub
+            </Text.Button>
+          )}
+        </div>
+      )}
     </GlassCard>
   );
 }

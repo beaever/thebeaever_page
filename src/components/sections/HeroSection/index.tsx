@@ -1,21 +1,22 @@
 /**
  * HeroSection Component
- * 
+ *
  * 포트폴리오 메인 히어로 섹션
  */
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { GradientText } from '@/components/common/GradientText';
+import { Text } from '@/components/ui/Text';
 import { CodeBlock } from './CodeBlock';
-import { useTotalCareer } from '@/hooks/useCareerCalculator';
-import { EXPERIENCES } from '@/constants/data';
+import { useTotalExperience } from '@/hooks/useCareerCalculator';
+import { EXPERIENCES_DATE, PROFILE } from '@/constants/data';
 import { staggerContainer, fadeInUp } from '@/lib/animations';
 
 export function HeroSection() {
   const [typedText, setTypedText] = useState('');
-  const totalCareerText = useTotalCareer(EXPERIENCES);
-  const DYNAMIC_CODE_TEXT = `const developer = {\n  experience: '${totalCareerText}',\n  focus: ['Performance', 'Scalability']\n}`;
+  const totalExperienceText = useTotalExperience(EXPERIENCES_DATE);
+  const DYNAMIC_CODE_TEXT = `const developer = {\n  experience: '${totalExperienceText}',\n  focus: ['Performance', 'Scalability']\n}`;
 
   useEffect(() => {
     let index = 0;
@@ -40,29 +41,32 @@ export function HeroSection() {
             animate='visible'
             variants={staggerContainer}
           >
-            <motion.h1
-              variants={fadeInUp}
-              className='text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6'
-            >
-              Solving Complexity
-              <br />
-              with <GradientText>Clean Code</GradientText>.
-            </motion.h1>
-            <motion.p
-              variants={fadeInUp}
-              className='text-lg md:text-xl text-[var(--text-secondary)] mb-4'
-            >
-              프론트엔드 개발자 <GradientText>김진영</GradientText>입니다.
-            </motion.p>
-            <motion.p
-              variants={fadeInUp}
-              className='text-base md:text-lg text-[var(--text-tertiary)] leading-relaxed'
-            >
-              비즈니스 가치를 코드에 녹여내고,
-              <br />
-              사용자 경험의 <GradientText>&apos;깊이&apos;</GradientText>를
-              고민합니다.
-            </motion.p>
+            <motion.div variants={fadeInUp}>
+              <Text.Heading size='xl' as='h1' className='mb-6'>
+                Solving Complexity
+                <br />
+                with <GradientText>Clean Code</GradientText>.
+              </Text.Heading>
+            </motion.div>
+            <motion.div variants={fadeInUp}>
+              <Text.Body size='lg' color='secondary' className='mb-4'>
+                {PROFILE.description}
+              </Text.Body>
+            </motion.div>
+            <motion.div variants={fadeInUp}>
+              <div className='space-y-2'>
+                {PROFILE.highlights.map((highlight, index) => (
+                  <Text.Body
+                    key={index}
+                    size='md'
+                    color='tertiary'
+                    className='leading-relaxed'
+                  >
+                    • <GradientText>{highlight}</GradientText>
+                  </Text.Body>
+                ))}
+              </div>
+            </motion.div>
           </motion.div>
 
           {/* Right: Code Typing Animation */}
