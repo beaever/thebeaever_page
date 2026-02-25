@@ -91,6 +91,18 @@ export const EXPERIENCES: Experience[] = [
         ],
       },
       {
+        title: 'ITSM 공용 UI 컴포넌트 Storybook',
+        period: '2022.01 ~ 2025.04',
+        description: '모노레포 구조에서 공통 UI 컴포넌트 Storybook 개발',
+        details: [
+          '모든 서비스에서 일관된 UI 컴포넌트를 위한 Storybook 개발',
+          'Compound Pattern을 활용한 컴포넌트 조합 유연성 확보',
+          '사내 디자인 시스템 기반의 디자인 토큰 구조 설계 및 정의',
+          'Emotion을 활용한 CSS-in-JS 구조 설계',
+          '유연한 스타일 관리 및 유지보수를 위한 컴포넌트 설계',
+        ],
+      },
+      {
         title: 'ITSM Servicedesk 개발 (WEB)',
         period: '2022.01 ~ 2023.10',
         description: 'Lerna 기반 Monorepo 환경에서 ITSM 서비스 개발 및 운영',
